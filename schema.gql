@@ -1,0 +1,44 @@
+type Article {
+  title: String!
+  content: String!
+  published: Boolean!
+  publishedAt: String!
+  updatedAt: String
+  slug: String!
+  author: Author! @relation(name: "article_author")
+  contributors: [Author!] @relation(name: "article_contributors")
+  seo_title: String
+  seo_description: String
+  seo_image: String
+  category: [Category!]
+  likes: Int
+  views: Int
+}
+
+enum Category {
+  TAILWINDCSS
+  NEXTJS
+  REACT
+  PYTHON
+}
+
+type Author {
+  name: String!
+  bio: String!
+  avatar: String
+  twitter: String
+  github: String
+  articles: [Article] @relation(name: "article_author")
+  contributions: [Article!] @relation(name: "article_contributors")
+}
+
+input AuthorInput {
+    name: String!
+}
+
+type Query {
+  allArticles: [Article!]
+  allAuthors: [Author!]
+  articleBySlug(slug: String!): Article
+}
+    
