@@ -32,12 +32,18 @@ type Author {
   articles: [Article] @relation(name: "article_author")
 }
 
-input AuthorInput {
-    name: String!
-}
-
 type Query {
   allArticles: [Article!]
   allAuthors: [Author!]
   articleBySlug(slug: String!): Article
+}
+
+input AuthorInput {
+  name: String!
+  bio: String!
+  avatar: String
+  twitter: String
+  github: String
+  website: String
+  email: String
 }
