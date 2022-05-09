@@ -28,6 +28,7 @@ type Author {
   twitter: String
   github: String
   website: String
+  email: String
   articles: [Article] @relation(name: "article_author")
 }
 
