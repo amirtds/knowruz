@@ -6,7 +6,6 @@ type Article {
   updatedAt: String
   slug: String!
   author: Author! @relation(name: "article_author")
-  contributors: [Author!] @relation(name: "article_contributors")
   seo_title: String
   seo_description: String
   seo_image: String
@@ -29,7 +28,6 @@ type Author {
   twitter: String
   github: String
   articles: [Article] @relation(name: "article_author")
-  contributions: [Article!] @relation(name: "article_contributors")
 }
 
 input AuthorInput {
@@ -41,4 +39,3 @@ type Query {
   allAuthors: [Author!]
   articleBySlug(slug: String!): Article
 }
-    
