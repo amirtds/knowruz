@@ -9,16 +9,14 @@ type Article {
   seo_title: String
   seo_description: String
   seo_image: String
-  category: [Category!]
+  tags: [Tag!] @relation(name: "article_tags")
   likes: Int
   views: Int
 }
 
-enum Category {
-  TAILWINDCSS
-  NEXTJS
-  REACT
-  PYTHON
+type Tag {
+  name: String!
+  articles: [Article!] @relation(name: "article_tags")
 }
 
 type Author {
@@ -36,6 +34,7 @@ type Query {
   allArticles: [Article!]
   allAuthors: [Author!]
   articleBySlug(slug: String!): Article
+  allTags: [Tag!]
 }
 
 input AuthorInput {
@@ -47,3 +46,4 @@ input AuthorInput {
   website: String
   email: String
 }
+
