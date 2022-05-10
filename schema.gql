@@ -1,10 +1,10 @@
 type Article {
-  title: String!
+  title: String! @unique
   content: String!
-  published: Boolean!
-  publishedAt: String!
+  isPublished: Boolean!
+  createddAt: String!
   updatedAt: String
-  slug: String!
+  slug: String! @unique
   author: Author! @relation(name: "article_author")
   seo_title: String
   seo_description: String
@@ -14,13 +14,8 @@ type Article {
   views: Int
 }
 
-type Tag {
-  name: String!
-  articles: [Article!] @relation(name: "article_tags")
-}
-
 type Author {
-  name: String!
+  name: String! @unique
   bio: String!
   avatar: String
   twitter: String
@@ -29,6 +24,12 @@ type Author {
   email: String
   articles: [Article] @relation(name: "article_author")
 }
+
+type Tag {
+  name: String! @unique
+  articles: [Article!] @relation(name: "article_tags")
+}
+
 
 type Query {
   allArticles: [Article!]
